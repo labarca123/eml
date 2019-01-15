@@ -122,7 +122,7 @@ func Process(r RawMessage) (m Message, e error) {
 			}
 			m.Subject = string(subject)
 		case `Ip`:
-			m.Ip,e = parseIp(string(rh.value))	
+			m.Ip = parseIp(string(rh.Value))	
 		case `Comments`:
 			m.Comments = append(m.Comments, string(rh.Value))
 		case `Keywords`:
