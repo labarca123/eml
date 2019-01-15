@@ -46,6 +46,7 @@ type HeaderInfo struct {
 	Comments    []string
 	Keywords    []string
 	ContentType string
+	Ip	    string
 
 	InReply    []string
 	References []string
@@ -120,6 +121,8 @@ func Process(r RawMessage) (m Message, e error) {
 				fmt.Println("Failed decode subject", err)
 			}
 			m.Subject = string(subject)
+		case `Ip`:
+			m.Ip,e = parseIp(rh.value)	
 		case `Comments`:
 			m.Comments = append(m.Comments, string(rh.Value))
 		case `Keywords`:
