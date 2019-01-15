@@ -38,6 +38,19 @@ func parseAddressList(s []byte) ([]Address, error) {
 	return al, nil
 }
 
+func parseIp(s string) string {
+	slice := strings.Split(s, "]")
+	s = slice[0]
+	slice = strings.SplitAfter(s, "[")
+	s = slice[len(slice)-1]
+
+	if strings.ContainsAny(s, ":") {
+		return "Unknow Ip"
+	}
+
+	return s
+}
+
 func decodeRFC2047(word string) string {
 	if strings.HasPrefix(word, "=?") && strings.HasSuffix(word, "?=") && strings.Count(word, "?") == 4 {
 		return ""
